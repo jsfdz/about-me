@@ -255,7 +255,7 @@ section h2.title:before {
 /* timline */
 .timeline:after {
   content: '';
-  background: var(--bg-theme);
+  background: var(--body-background-color);
   font-family: 'Font Awesome 5 Duotone';
   font-size: 16px;
   color: var(--link-color-theme);
@@ -380,17 +380,14 @@ section h2.title:before {
   visibility: visible;
 }
 
-.overlay {
-  overflow: hidden;
-  left: 0;
-  top: 0;
-  transition: 0.2s ease-in-out;
-}
-
 @media (min-width: 768px) {
   .overlay {
     background-color: var(--bg-overlay);
     opacity: 0;
     visibility: hidden;
+    overflow: hidden;
+    left: 0;
+    top: 0;
+    transition: 0.2s ease-in-out;
   }
 }

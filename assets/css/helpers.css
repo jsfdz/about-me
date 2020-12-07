@@ -1,375 +1,73 @@
 /* Copyright 2020 jsfdz ~ All rights reserved. MIT license. */
-:root {
-  --bubble-size: 1rem;
-  --bubble-bg: #f0f0f0;
-  --bubble-color: #363636;
-  --bubble-move: 10px;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bubble-bg: #191919;
-    --bubble-color: #ffffff;
-  }
-}
-
-.bubble[data-bubble] {
-  position: relative;
-  cursor: pointer;
-}
-
-.bubble[data-bubble]:after {
-  opacity: 0;
-  pointer-events: none;
-  transition: all 0.18s ease-out 0.18s;
-  text-indent: 0;
-  font-family: sans-serif;
-  font-weight: normal !important;
-  font-style: normal !important;
-  text-shadow: none !important;
-  font-size: 1rem !important;
-  background: var(--bubble-bg);
-  border-radius: 4px;
-  color: var(--bubble-color);
-  content: attr(data-bubble);
-  padding: 0.5em 1em;
-  position: absolute;
-  white-space: nowrap;
-  z-index: 10;
-}
-
-.bubble[data-bubble]:hover:after {
-  opacity: 1;
-  pointer-events: none;
-}
-
-.bubble.font-awesome:after {
-  font-family: 'Font Awesome 5 pro', 'Font Awesome 5 Brands', FontAwesome,
-    sans-serif;
-}
-
-.bubble:not(.pop-up):after,
-.bubble:not(.pop-up-left):after,
-.bubble:not(.pop-up-right):after,
-.bubble:not(.pop-down):after,
-.bubble:not(.pop-down-left):after,
-.bubble:not(.pop-down-right):after,
-.bubble:not(.pop-left):after,
-.bubble:not(.pop-right):after {
-  bottom: 100%;
-  left: 50%;
-  margin-bottom: 10px;
-  transform: translate(-50%, var(--bubble-move));
-  transform-origin: top;
-}
-
-.bubble:not(.pop-up):hover:after,
-.bubble:not(.pop-up-left):hover:after,
-.bubble:not(.pop-up-right):hover:after,
-.bubble:not(.pop-down):hover:after,
-.bubble:not(.pop-down-left):hover:after,
-.bubble:not(.pop-down-right):hover:after,
-.bubble:not(.pop-left):hover:after,
-.bubble:not(.pop-right):hover:after {
-  transform: translate(-50%, 0);
-}
-
-.bubble.pop-up:after {
-  bottom: 100%;
-  left: 50%;
-  top: unset;
-  right: unset;
-  margin-bottom: 10px;
-  margin-top: unset;
-  margin-right: unset;
-  margin-left: unset;
-  transform: translate(-50%, var(--bubble-move));
-  transform-origin: top;
-}
-
-.bubble.pop-up:hover:after {
-  transform: translate(-50%, 0);
-}
-
-.bubble.pop-up-left:after {
-  bottom: 100%;
-  left: 0;
-  right: unset;
-  top: unset;
-  margin-bottom: 10px;
-  margin-top: unset;
-  margin-right: unset;
-  margin-left: unset;
-  transform: translate(0, var(--bubble-move));
-  transform-origin: top;
-}
-
-.bubble.pop-up-left:hover:after {
-  transform: translate(0, 0);
-}
-
-.bubble.pop-up-right:after {
-  bottom: 100%;
-  right: 0;
-  left: unset;
-  top: unset;
-  margin-bottom: 10px;
-  margin-top: unset;
-  margin-right: unset;
-  margin-left: unset;
-  transform: translate(0, var(--bubble-move));
-  transform-origin: top;
-}
-
-.bubble.pop-up-right:hover:after {
-  transform: translate(0, 0);
-}
-
-.bubble.pop-down:after {
-  left: 50%;
-  bottom: unset;
-  right: unset;
-  margin-top: 10px;
-  margin-bottom: unset;
-  margin-right: unset;
-  margin-left: unset;
-  top: 100%;
-  transform: translate(-50%, calc(var(--bubble-move) * -1));
-}
-
-.bubble.pop-down:hover:after {
-  transform: translate(-50%, 0);
-}
-
-.bubble.pop-down-left:after {
-  left: 0;
-  right: unset;
-  bottom: unset;
-  margin-top: 10px;
-  margin-bottom: unset;
-  margin-right: unset;
-  margin-left: unset;
-  top: 100%;
-  transform: translate(0, calc(var(--bubble-move) * -1));
-}
-
-.bubble.pop-down-left:hover:after {
-  transform: translate(0, 0);
-}
-
-.bubble.pop-down-right:after {
-  right: 0;
-  left: unset;
-  bottom: unset;
-  margin-top: 10px;
-  margin-bottom: unset;
-  margin-right: unset;
-  margin-left: unset;
-  top: 100%;
-  transform: translate(0, calc(var(--bubble-move) * -1));
-}
-
-.bubble.pop-down-right:hover:after {
-  transform: translate(0, 0);
-}
-
-.bubble.pop-left:after {
-  right: 100%;
-  left: unset;
-  bottom: unset;
-  margin-right: 10px;
-  margin-top: unset;
-  margin-left: unset;
-  margin-bottom: unset;
-  top: 50%;
-  transform: translate(var(--bubble-move), -50%);
-}
-
-.bubble.pop-left:hover:after {
-  transform: translate(0, -50%);
-}
-
-.bubble.pop-right:after {
-  left: 100%;
-  right: unset;
-  bottom: unset;
-  margin-left: 10px;
-  margin-top: unset;
-  margin-right: unset;
-  margin-bottom: unset;
-  top: 50%;
-  transform: translate(calc(var(--bubble-move) * -1), -50%);
-}
-
-.bubble.pop-right:hover:after {
-  transform: translate(0, -50%);
-}
-
-.bubble.pop-sm:after {
-  white-space: normal;
-  width: 80px;
-}
-
-.bubble.pop-md:after {
-  white-space: normal;
-  width: 150px;
-}
-
-.bubble.pop-lg:after {
-  white-space: normal;
-  width: 260px;
-}
-
-.bubble.pop-xl:after {
-  white-space: normal;
-  width: 380px;
-}
-
-.bubble.pop-fit:after {
-  white-space: normal;
-  width: 100%;
-}
-
-@media (min-width: 576px) {
-  .bubble.s-pop-up:after {
-    bottom: 100%;
-    left: 50%;
-    top: unset;
-    right: unset;
-    margin-bottom: 10px;
-    margin-top: unset;
-    margin-right: unset;
-    margin-left: unset;
-    transform: translate(-50%, var(--bubble-move));
-    transform-origin: top;
-  }
-  .bubble.s-pop-up:hover:after {
-    transform: translate(-50%, 0);
-  }
-  .bubble.s-pop-up-left:after {
-    bottom: 100%;
-    left: 0;
-    right: unset;
-    top: unset;
-    margin-bottom: 10px;
-    margin-top: unset;
-    margin-right: unset;
-    margin-left: unset;
-    transform: translate(0, var(--bubble-move));
-    transform-origin: top;
-  }
-  .bubble.s-pop-up-left:hover:after {
-    transform: translate(0, 0);
-  }
-  .bubble.s-pop-up-right:after {
-    bottom: 100%;
-    right: 0;
-    left: unset;
-    top: unset;
-    margin-bottom: 10px;
-    margin-top: unset;
-    margin-right: unset;
-    margin-left: unset;
-    transform: translate(0, var(--bubble-move));
-    transform-origin: top;
-  }
-  .bubble.s-pop-up-right:hover:after {
-    transform: translate(0, 0);
-  }
-  .bubble.s-pop-down:after {
-    left: 50%;
-    bottom: unset;
-    right: unset;
-    margin-top: 10px;
-    margin-bottom: unset;
-    margin-right: unset;
-    margin-left: unset;
-    top: 100%;
-    transform: translate(-50%, calc(var(--bubble-move) * -1));
-  }
-  .bubble.s-pop-down:hover:after {
-    transform: translate(-50%, 0);
-  }
-  .bubble.s-pop-down-left:after {
-    left: 0;
-    right: unset;
-    bottom: unset;
-    margin-top: 10px;
-    margin-bottom: unset;
-    margin-right: unset;
-    margin-left: unset;
-    top: 100%;
-    transform: translate(0, calc(var(--bubble-move) * -1));
-  }
-  .bubble.s-pop-down-left:hover:after {
-    transform: translate(0, 0);
-  }
-  .bubble.s-pop-down-right:after {
-    right: 0;
-    left: unset;
-    bottom: unset;
-    margin-top: 10px;
-    margin-bottom: unset;
-    margin-right: unset;
-    margin-left: unset;
-    top: 100%;
-    transform: translate(0, calc(var(--bubble-move) * -1));
-  }
-  .bubble.s-pop-down-right:hover:after {
-    transform: translate(0, 0);
-  }
-  .bubble.s-pop-left:after {
-    right: 100%;
-    left: unset;
-    bottom: unset;
-    margin-right: 10px;
-    margin-top: unset;
-    margin-left: unset;
-    margin-bottom: unset;
-    top: 50%;
-    transform: translate(var(--bubble-move), -50%);
-  }
-  .bubble.s-pop-left:hover:after {
-    transform: translate(0, -50%);
-  }
-  .bubble.s-pop-right:after {
-    left: 100%;
-    right: unset;
-    bottom: unset;
-    margin-left: 10px;
-    margin-top: unset;
-    margin-right: unset;
-    margin-bottom: unset;
-    top: 50%;
-    transform: translate(calc(var(--bubble-move) * -1), -50%);
-  }
-  .bubble.s-pop-right:hover:after {
-    transform: translate(0, -50%);
-  }
-  .bubble.s-pop-sm:after {
-    white-space: normal;
-    width: 80px;
-  }
-  .bubble.s-pop-md:after {
-    white-space: normal;
-    width: 150px;
-  }
-  .bubble.s-pop-lg:after {
-    white-space: normal;
-    width: 260px;
-  }
-  .bubble.s-pop-xl:after {
-    white-space: normal;
-    width: 380px;
-  }
-  .bubble.s-pop-fit:after {
-    white-space: normal;
-    width: 100%;
-  }
-}
-
 @media (min-width: 768px) {
-  .bubble.m-pop-up:after {
+  :root {
+    --bubble-size: 1rem;
+    --bubble-bg: #f0f0f0;
+    --bubble-color: #363636;
+    --bubble-move: 10px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bubble-bg: #191919;
+      --bubble-color: #ffffff;
+    }
+  }
+  .bubble[data-bubble] {
+    position: relative;
+    cursor: pointer;
+  }
+  .bubble[data-bubble]:after {
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.18s ease-out 0.18s;
+    text-indent: 0;
+    font-family: sans-serif;
+    font-weight: normal !important;
+    font-style: normal !important;
+    text-shadow: none !important;
+    font-size: 1rem !important;
+    background: var(--bubble-bg);
+    border-radius: 4px;
+    color: var(--bubble-color);
+    content: attr(data-bubble);
+    padding: 0.5em 1em;
+    position: absolute;
+    white-space: nowrap;
+    z-index: 10;
+  }
+  .bubble[data-bubble]:hover:after {
+    opacity: 1;
+    pointer-events: none;
+  }
+  .bubble.font-awesome:after {
+    font-family: 'Font Awesome 5 pro', 'Font Awesome 5 Brands', FontAwesome,
+      sans-serif;
+  }
+  .bubble:not(.pop-up):after,
+  .bubble:not(.pop-up-left):after,
+  .bubble:not(.pop-up-right):after,
+  .bubble:not(.pop-down):after,
+  .bubble:not(.pop-down-left):after,
+  .bubble:not(.pop-down-right):after,
+  .bubble:not(.pop-left):after,
+  .bubble:not(.pop-right):after {
+    bottom: 100%;
+    left: 50%;
+    margin-bottom: 10px;
+    transform: translate(-50%, var(--bubble-move));
+    transform-origin: top;
+  }
+  .bubble:not(.pop-up):hover:after,
+  .bubble:not(.pop-up-left):hover:after,
+  .bubble:not(.pop-up-right):hover:after,
+  .bubble:not(.pop-down):hover:after,
+  .bubble:not(.pop-down-left):hover:after,
+  .bubble:not(.pop-down-right):hover:after,
+  .bubble:not(.pop-left):hover:after,
+  .bubble:not(.pop-right):hover:after {
+    transform: translate(-50%, 0);
+  }
+  .bubble.pop-up:after {
     bottom: 100%;
     left: 50%;
     top: unset;
@@ -381,10 +79,10 @@
     transform: translate(-50%, var(--bubble-move));
     transform-origin: top;
   }
-  .bubble.m-pop-up:hover:after {
+  .bubble.pop-up:hover:after {
     transform: translate(-50%, 0);
   }
-  .bubble.m-pop-up-left:after {
+  .bubble.pop-up-left:after {
     bottom: 100%;
     left: 0;
     right: unset;
@@ -396,10 +94,10 @@
     transform: translate(0, var(--bubble-move));
     transform-origin: top;
   }
-  .bubble.m-pop-up-left:hover:after {
+  .bubble.pop-up-left:hover:after {
     transform: translate(0, 0);
   }
-  .bubble.m-pop-up-right:after {
+  .bubble.pop-up-right:after {
     bottom: 100%;
     right: 0;
     left: unset;
@@ -411,10 +109,10 @@
     transform: translate(0, var(--bubble-move));
     transform-origin: top;
   }
-  .bubble.m-pop-up-right:hover:after {
+  .bubble.pop-up-right:hover:after {
     transform: translate(0, 0);
   }
-  .bubble.m-pop-down:after {
+  .bubble.pop-down:after {
     left: 50%;
     bottom: unset;
     right: unset;
@@ -425,10 +123,10 @@
     top: 100%;
     transform: translate(-50%, calc(var(--bubble-move) * -1));
   }
-  .bubble.m-pop-down:hover:after {
+  .bubble.pop-down:hover:after {
     transform: translate(-50%, 0);
   }
-  .bubble.m-pop-down-left:after {
+  .bubble.pop-down-left:after {
     left: 0;
     right: unset;
     bottom: unset;
@@ -439,10 +137,10 @@
     top: 100%;
     transform: translate(0, calc(var(--bubble-move) * -1));
   }
-  .bubble.m-pop-down-left:hover:after {
+  .bubble.pop-down-left:hover:after {
     transform: translate(0, 0);
   }
-  .bubble.m-pop-down-right:after {
+  .bubble.pop-down-right:after {
     right: 0;
     left: unset;
     bottom: unset;
@@ -453,10 +151,10 @@
     top: 100%;
     transform: translate(0, calc(var(--bubble-move) * -1));
   }
-  .bubble.m-pop-down-right:hover:after {
+  .bubble.pop-down-right:hover:after {
     transform: translate(0, 0);
   }
-  .bubble.m-pop-left:after {
+  .bubble.pop-left:after {
     right: 100%;
     left: unset;
     bottom: unset;
@@ -467,10 +165,10 @@
     top: 50%;
     transform: translate(var(--bubble-move), -50%);
   }
-  .bubble.m-pop-left:hover:after {
+  .bubble.pop-left:hover:after {
     transform: translate(0, -50%);
   }
-  .bubble.m-pop-right:after {
+  .bubble.pop-right:after {
     left: 100%;
     right: unset;
     bottom: unset;
@@ -481,440 +179,26 @@
     top: 50%;
     transform: translate(calc(var(--bubble-move) * -1), -50%);
   }
-  .bubble.m-pop-right:hover:after {
+  .bubble.pop-right:hover:after {
     transform: translate(0, -50%);
   }
-  .bubble.m-pop-sm:after {
+  .bubble.pop-sm:after {
     white-space: normal;
     width: 80px;
   }
-  .bubble.m-pop-md:after {
+  .bubble.pop-md:after {
     white-space: normal;
     width: 150px;
   }
-  .bubble.m-pop-lg:after {
+  .bubble.pop-lg:after {
     white-space: normal;
     width: 260px;
   }
-  .bubble.m-pop-xl:after {
+  .bubble.pop-xl:after {
     white-space: normal;
     width: 380px;
   }
-  .bubble.m-pop-fit:after {
-    white-space: normal;
-    width: 100%;
-  }
-}
-
-@media (min-width: 992px) {
-  .bubble.lg-pop-up:after {
-    bottom: 100%;
-    left: 50%;
-    top: unset;
-    right: unset;
-    margin-bottom: 10px;
-    margin-top: unset;
-    margin-right: unset;
-    margin-left: unset;
-    transform: translate(-50%, var(--bubble-move));
-    transform-origin: top;
-  }
-  .bubble.lg-pop-up:hover:after {
-    transform: translate(-50%, 0);
-  }
-  .bubble.lg-pop-up-left:after {
-    bottom: 100%;
-    left: 0;
-    right: unset;
-    top: unset;
-    margin-bottom: 10px;
-    margin-top: unset;
-    margin-right: unset;
-    margin-left: unset;
-    transform: translate(0, var(--bubble-move));
-    transform-origin: top;
-  }
-  .bubble.lg-pop-up-left:hover:after {
-    transform: translate(0, 0);
-  }
-  .bubble.lg-pop-up-right:after {
-    bottom: 100%;
-    right: 0;
-    left: unset;
-    top: unset;
-    margin-bottom: 10px;
-    margin-top: unset;
-    margin-right: unset;
-    margin-left: unset;
-    transform: translate(0, var(--bubble-move));
-    transform-origin: top;
-  }
-  .bubble.lg-pop-up-right:hover:after {
-    transform: translate(0, 0);
-  }
-  .bubble.lg-pop-down:after {
-    left: 50%;
-    bottom: unset;
-    right: unset;
-    margin-top: 10px;
-    margin-bottom: unset;
-    margin-right: unset;
-    margin-left: unset;
-    top: 100%;
-    transform: translate(-50%, calc(var(--bubble-move) * -1));
-  }
-  .bubble.lg-pop-down:hover:after {
-    transform: translate(-50%, 0);
-  }
-  .bubble.lg-pop-down-left:after {
-    left: 0;
-    right: unset;
-    bottom: unset;
-    margin-top: 10px;
-    margin-bottom: unset;
-    margin-right: unset;
-    margin-left: unset;
-    top: 100%;
-    transform: translate(0, calc(var(--bubble-move) * -1));
-  }
-  .bubble.lg-pop-down-left:hover:after {
-    transform: translate(0, 0);
-  }
-  .bubble.lg-pop-down-right:after {
-    right: 0;
-    left: unset;
-    bottom: unset;
-    margin-top: 10px;
-    margin-bottom: unset;
-    margin-right: unset;
-    margin-left: unset;
-    top: 100%;
-    transform: translate(0, calc(var(--bubble-move) * -1));
-  }
-  .bubble.lg-pop-down-right:hover:after {
-    transform: translate(0, 0);
-  }
-  .bubble.lg-pop-left:after {
-    right: 100%;
-    left: unset;
-    bottom: unset;
-    margin-right: 10px;
-    margin-top: unset;
-    margin-left: unset;
-    margin-bottom: unset;
-    top: 50%;
-    transform: translate(var(--bubble-move), -50%);
-  }
-  .bubble.lg-pop-left:hover:after {
-    transform: translate(0, -50%);
-  }
-  .bubble.lg-pop-right:after {
-    left: 100%;
-    right: unset;
-    bottom: unset;
-    margin-left: 10px;
-    margin-top: unset;
-    margin-right: unset;
-    margin-bottom: unset;
-    top: 50%;
-    transform: translate(calc(var(--bubble-move) * -1), -50%);
-  }
-  .bubble.lg-pop-right:hover:after {
-    transform: translate(0, -50%);
-  }
-  .bubble.lg-pop-sm:after {
-    white-space: normal;
-    width: 80px;
-  }
-  .bubble.lg-pop-md:after {
-    white-space: normal;
-    width: 150px;
-  }
-  .bubble.lg-pop-lg:after {
-    white-space: normal;
-    width: 260px;
-  }
-  .bubble.lg-pop-xl:after {
-    white-space: normal;
-    width: 380px;
-  }
-  .bubble.lg-pop-fit:after {
-    white-space: normal;
-    width: 100%;
-  }
-}
-
-@media (min-width: 1200px) {
-  .bubble.xl-pop-up:after {
-    bottom: 100%;
-    left: 50%;
-    top: unset;
-    right: unset;
-    margin-bottom: 10px;
-    margin-top: unset;
-    margin-right: unset;
-    margin-left: unset;
-    transform: translate(-50%, var(--bubble-move));
-    transform-origin: top;
-  }
-  .bubble.xl-pop-up:hover:after {
-    transform: translate(-50%, 0);
-  }
-  .bubble.xl-pop-up-left:after {
-    bottom: 100%;
-    left: 0;
-    right: unset;
-    top: unset;
-    margin-bottom: 10px;
-    margin-top: unset;
-    margin-right: unset;
-    margin-left: unset;
-    transform: translate(0, var(--bubble-move));
-    transform-origin: top;
-  }
-  .bubble.xl-pop-up-left:hover:after {
-    transform: translate(0, 0);
-  }
-  .bubble.xl-pop-up-right:after {
-    bottom: 100%;
-    right: 0;
-    left: unset;
-    top: unset;
-    margin-bottom: 10px;
-    margin-top: unset;
-    margin-right: unset;
-    margin-left: unset;
-    transform: translate(0, var(--bubble-move));
-    transform-origin: top;
-  }
-  .bubble.xl-pop-up-right:hover:after {
-    transform: translate(0, 0);
-  }
-  .bubble.xl-pop-down:after {
-    left: 50%;
-    bottom: unset;
-    right: unset;
-    margin-top: 10px;
-    margin-bottom: unset;
-    margin-right: unset;
-    margin-left: unset;
-    top: 100%;
-    transform: translate(-50%, calc(var(--bubble-move) * -1));
-  }
-  .bubble.xl-pop-down:hover:after {
-    transform: translate(-50%, 0);
-  }
-  .bubble.xl-pop-down-left:after {
-    left: 0;
-    right: unset;
-    bottom: unset;
-    margin-top: 10px;
-    margin-bottom: unset;
-    margin-right: unset;
-    margin-left: unset;
-    top: 100%;
-    transform: translate(0, calc(var(--bubble-move) * -1));
-  }
-  .bubble.xl-pop-down-left:hover:after {
-    transform: translate(0, 0);
-  }
-  .bubble.xl-pop-down-right:after {
-    right: 0;
-    left: unset;
-    bottom: unset;
-    margin-top: 10px;
-    margin-bottom: unset;
-    margin-right: unset;
-    margin-left: unset;
-    top: 100%;
-    transform: translate(0, calc(var(--bubble-move) * -1));
-  }
-  .bubble.xl-pop-down-right:hover:after {
-    transform: translate(0, 0);
-  }
-  .bubble.xl-pop-left:after {
-    right: 100%;
-    left: unset;
-    bottom: unset;
-    margin-right: 10px;
-    margin-top: unset;
-    margin-left: unset;
-    margin-bottom: unset;
-    top: 50%;
-    transform: translate(var(--bubble-move), -50%);
-  }
-  .bubble.xl-pop-left:hover:after {
-    transform: translate(0, -50%);
-  }
-  .bubble.xl-pop-right:after {
-    left: 100%;
-    right: unset;
-    bottom: unset;
-    margin-left: 10px;
-    margin-top: unset;
-    margin-right: unset;
-    margin-bottom: unset;
-    top: 50%;
-    transform: translate(calc(var(--bubble-move) * -1), -50%);
-  }
-  .bubble.xl-pop-right:hover:after {
-    transform: translate(0, -50%);
-  }
-  .bubble.xl-pop-sm:after {
-    white-space: normal;
-    width: 80px;
-  }
-  .bubble.xl-pop-md:after {
-    white-space: normal;
-    width: 150px;
-  }
-  .bubble.xl-pop-lg:after {
-    white-space: normal;
-    width: 260px;
-  }
-  .bubble.xl-pop-xl:after {
-    white-space: normal;
-    width: 380px;
-  }
-  .bubble.xl-pop-fit:after {
-    white-space: normal;
-    width: 100%;
-  }
-}
-
-@media (min-width: 1400px) {
-  .bubble.xxl-pop-up:after {
-    bottom: 100%;
-    left: 50%;
-    top: unset;
-    right: unset;
-    margin-bottom: 10px;
-    margin-top: unset;
-    margin-right: unset;
-    margin-left: unset;
-    transform: translate(-50%, var(--bubble-move));
-    transform-origin: top;
-  }
-  .bubble.xxl-pop-up:hover:after {
-    transform: translate(-50%, 0);
-  }
-  .bubble.xxl-pop-up-left:after {
-    bottom: 100%;
-    left: 0;
-    right: unset;
-    top: unset;
-    margin-bottom: 10px;
-    margin-top: unset;
-    margin-right: unset;
-    margin-left: unset;
-    transform: translate(0, var(--bubble-move));
-    transform-origin: top;
-  }
-  .bubble.xxl-pop-up-left:hover:after {
-    transform: translate(0, 0);
-  }
-  .bubble.xxl-pop-up-right:after {
-    bottom: 100%;
-    right: 0;
-    left: unset;
-    top: unset;
-    margin-bottom: 10px;
-    margin-top: unset;
-    margin-right: unset;
-    margin-left: unset;
-    transform: translate(0, var(--bubble-move));
-    transform-origin: top;
-  }
-  .bubble.xxl-pop-up-right:hover:after {
-    transform: translate(0, 0);
-  }
-  .bubble.xxl-pop-down:after {
-    left: 50%;
-    bottom: unset;
-    right: unset;
-    margin-top: 10px;
-    margin-bottom: unset;
-    margin-right: unset;
-    margin-left: unset;
-    top: 100%;
-    transform: translate(-50%, calc(var(--bubble-move) * -1));
-  }
-  .bubble.xxl-pop-down:hover:after {
-    transform: translate(-50%, 0);
-  }
-  .bubble.xxl-pop-down-left:after {
-    left: 0;
-    right: unset;
-    bottom: unset;
-    margin-top: 10px;
-    margin-bottom: unset;
-    margin-right: unset;
-    margin-left: unset;
-    top: 100%;
-    transform: translate(0, calc(var(--bubble-move) * -1));
-  }
-  .bubble.xxl-pop-down-left:hover:after {
-    transform: translate(0, 0);
-  }
-  .bubble.xxl-pop-down-right:after {
-    right: 0;
-    left: unset;
-    bottom: unset;
-    margin-top: 10px;
-    margin-bottom: unset;
-    margin-right: unset;
-    margin-left: unset;
-    top: 100%;
-    transform: translate(0, calc(var(--bubble-move) * -1));
-  }
-  .bubble.xxl-pop-down-right:hover:after {
-    transform: translate(0, 0);
-  }
-  .bubble.xxl-pop-left:after {
-    right: 100%;
-    left: unset;
-    bottom: unset;
-    margin-right: 10px;
-    margin-top: unset;
-    margin-left: unset;
-    margin-bottom: unset;
-    top: 50%;
-    transform: translate(var(--bubble-move), -50%);
-  }
-  .bubble.xxl-pop-left:hover:after {
-    transform: translate(0, -50%);
-  }
-  .bubble.xxl-pop-right:after {
-    left: 100%;
-    right: unset;
-    bottom: unset;
-    margin-left: 10px;
-    margin-top: unset;
-    margin-right: unset;
-    margin-bottom: unset;
-    top: 50%;
-    transform: translate(calc(var(--bubble-move) * -1), -50%);
-  }
-  .bubble.xxl-pop-right:hover:after {
-    transform: translate(0, -50%);
-  }
-  .bubble.xxl-pop-sm:after {
-    white-space: normal;
-    width: 80px;
-  }
-  .bubble.xxl-pop-md:after {
-    white-space: normal;
-    width: 150px;
-  }
-  .bubble.xxl-pop-lg:after {
-    white-space: normal;
-    width: 260px;
-  }
-  .bubble.xxl-pop-xl:after {
-    white-space: normal;
-    width: 380px;
-  }
-  .bubble.xxl-pop-fit:after {
+  .bubble.pop-fit:after {
     white-space: normal;
     width: 100%;
   }
