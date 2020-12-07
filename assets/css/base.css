@@ -1,0 +1,261 @@
+/* Copyright 2020 jsfdz ~ All rights reserved. MIT license. */
+html,
+body,
+p,
+ol,
+ul,
+li,
+dl,
+dt,
+dd,
+blockquote,
+figure,
+fieldset,
+legend,
+textarea,
+pre,
+iframe,
+hr,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+  font-weight: normal;
+}
+
+ul {
+  list-style: none;
+}
+
+button,
+input,
+select,
+textarea {
+  margin: 0;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+img,
+video {
+  height: auto;
+  max-width: 100%;
+}
+
+iframe {
+  border: 0;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+td,
+th {
+  padding: 0;
+}
+
+td:not([align]),
+th:not([align]) {
+  text-align: inherit;
+}
+
+:root {
+  --body-background-color: #ffffff;
+  --body-size: 16px;
+  --body-min-width: 300px;
+  --body-rendering: optimizeLegibility;
+  --body-family: BlinkMacSystemFont, -apple-system, 'Segoe UI', 'Roboto',
+    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    'Helvetica', 'Arial', sans-serif;
+  --body-overflow-x: hidden;
+  --body-overflow-y: scroll;
+  --body-color: #4a4a4a;
+  --body-font-size: 1em;
+  --body-weight: 400;
+  --body-line-height: 1.5;
+  --link: #3273dc;
+  --link-hover: #363636;
+  --code: #da1039;
+  --code-background: #f5f5f5;
+  --code-family: monospace;
+  --code-padding: 0.25em 0.5em 0.25em;
+  --code-weight: normal;
+  --code-size: 0.875em;
+  --text-strong: #363636;
+  --small-font-size: 0.875em;
+  --hr-background-color: #f5f5f5;
+  --hr-height: 2px;
+  --hr-margin: 1.5rem 0;
+  --strong-color: #363636;
+  --strong-weight: 700;
+  --pre: #4a4a4a;
+  --pre-background: #f5f5f5;
+  --pre-font-size: 0.875em;
+  --pre-padding: 1.25rem 1.5rem;
+  --pre-code-font-size: 1em;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --body-background-color: #111111;
+    --body-color: #ffffff;
+  }
+}
+
+html {
+  background-color: var(--body-background-color);
+  font-size: var(--body-size);
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  min-width: var(--body-min-width);
+  overflow-x: var(--body-overflow-x);
+  overflow-y: var(--body-overflow-y);
+  text-rendering: var(--body-rendering);
+  text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+article,
+aside,
+figure,
+footer,
+header,
+hgroup,
+section {
+  display: block;
+}
+
+body,
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: var(--body-family);
+}
+
+code,
+pre {
+  -moz-osx-font-smoothing: auto;
+  -webkit-font-smoothing: auto;
+  font-family: var(--code-family);
+}
+
+body {
+  color: var(--body-color);
+  font-size: var(--body-font-size);
+  font-weight: var(--body-weight);
+  line-height: var(--body-line-height);
+}
+
+a {
+  color: var(--link);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+a strong {
+  color: currentColor;
+}
+
+a:hover {
+  color: var(--link-hover);
+}
+
+code {
+  background-color: var(--code-background);
+  color: var(--code);
+  font-size: var(--code-size);
+  font-weight: var(--code-weight);
+  padding: var(--code-padding);
+}
+
+hr {
+  background-color: var(--hr-background-color);
+  border: none;
+  display: block;
+  height: var(--hr-height);
+  margin: var(--hr-margin);
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+}
+
+input[type='checkbox'],
+input[type='radio'] {
+  vertical-align: baseline;
+}
+
+small {
+  font-size: var(--small-font-size);
+}
+
+span {
+  font-style: inherit;
+  font-weight: inherit;
+}
+
+strong {
+  color: var(--strong-color);
+  font-weight: var(--strong-weight);
+}
+
+fieldset {
+  border: none;
+}
+
+pre {
+  background-color: var(--pre-background);
+  color: var(--pre);
+  font-size: var(--pre-font-size);
+  overflow-x: auto;
+  padding: var(--pre-padding);
+  white-space: pre;
+  word-wrap: normal;
+}
+
+pre code {
+  background-color: transparent;
+  color: currentColor;
+  font-size: var(--pre-code-font-size);
+  padding: 0;
+}
+
+table td,
+th {
+  vertical-align: top;
+}
+
+table td:not([align]),
+th:not([align]) {
+  text-align: inherit;
+}
+
+th {
+  color: var(--text-strong);
+}

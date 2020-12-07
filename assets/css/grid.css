@@ -1,0 +1,1790 @@
+/* Copyright 2020 jsfdz ~ All rights reserved. MIT license. */
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+:root {
+  --color: #007bdf;
+  --color-alt: #006dc6;
+  --border-color: #dfe0e0;
+  --light-bg: #f0f0f0;
+  --border-radius: 0.25rem;
+  --spaces-x: 1.5rem;
+  --spaces-y: 0;
+  --vertical-block-space: 1rem;
+  --vertical-content-space: 1rem;
+  --gap: 1rem;
+  --max-width: 1200px;
+}
+
+body.dev:before,
+body.dev .content:before,
+body.dev .grid:before,
+body.dev .content > *:before,
+body.dev .grid > *:before,
+body.dev-hover .content:hover:before,
+body.dev-hover .grid:hover:before,
+body.dev-hover .content > *:hover:before,
+body.dev-hover .grid > *:hover:before {
+  content: attr(class);
+  font-style: italic;
+  font-size: 0.75rem;
+  font-weight: normal;
+  z-index: 1;
+  right: 0;
+  position: absolute;
+  display: table;
+  width: 100%;
+  padding: 0 0.3125em;
+  height: 1.25rem;
+  line-height: 1.25rem;
+}
+
+body.dev {
+  margin: 0 !important;
+  position: relative;
+  top: 66px;
+}
+
+body.dev:before {
+  position: fixed;
+  background: steelblue;
+  color: #fff;
+  font-size: 0.875rem;
+  text-align: center;
+  line-height: 36px;
+  height: 36px;
+  top: 0;
+}
+
+body.dev:before {
+  content: 'grid: breakpoint xs = extra small, from 0 (content: red, items: blue, yellow)';
+}
+
+@media (min-width: 576px) {
+  body.dev:before {
+    content: 'grid: breakpoint s = small, from 576px (content: red, items: blue, yellow)';
+  }
+}
+
+@media (min-width: 768px) {
+  body.dev:before {
+    content: 'grid: breakpoint m = medium, from 768px (content: red, items: blue, yellow)';
+  }
+}
+
+@media (min-width: 992px) {
+  body.dev:before {
+    content: 'grid: breakpoint lg = large, from 992px (content: red, items: blue, yellow)';
+  }
+}
+
+@media (min-width: 1200px) {
+  body.dev:before {
+    content: 'grid: breakpoint xl = extra large, from 1200px (content: red, items: blue, yellow)';
+  }
+}
+
+@media (min-width: 1400px) {
+  body.dev:before {
+    content: 'grid: breakpoint xxl = extra extra large, from 1400px (content: red, items: blue, yellow)';
+  }
+}
+
+body.dev .content,
+body.dev .grid {
+  padding-top: 1.25rem;
+  margin-bottom: 10px;
+  outline: 1px solid tomato;
+  position: relative;
+}
+
+body.dev .content .content,
+body.dev .content .grid,
+body.dev .grid .content,
+body.dev .grid .grid {
+  margin-bottom: 0;
+}
+
+body.dev .content:before,
+body.dev .grid:before {
+  top: 0;
+  background: rgba(255, 99, 71, 0.3);
+  color: tomato;
+}
+
+body.dev .content > *,
+body.dev .grid > * {
+  position: relative;
+  padding-bottom: 1.25rem;
+  background-color: rgba(70, 130, 180, 0.1);
+  outline: 1px solid steelblue;
+  background-clip: content-box;
+}
+
+body.dev .content > *:before,
+body.dev .grid > *:before {
+  background: rgba(70, 130, 180, 0.8);
+  color: #fff;
+  bottom: 0;
+}
+
+body.dev-hover .content:hover,
+body.dev-hover .grid:hover {
+  padding-top: 1.25rem;
+  margin-bottom: 10px;
+  outline: 1px solid tomato;
+  position: relative;
+}
+
+body.dev-hover .content:hover .content,
+body.dev-hover .content:hover .grid,
+body.dev-hover .grid:hover .content,
+body.dev-hover .grid:hover .grid {
+  margin-bottom: 0;
+}
+
+body.dev-hover .content:hover:before,
+body.dev-hover .grid:hover:before {
+  top: 0;
+  background: rgba(255, 99, 71, 0.3);
+  color: tomato;
+}
+
+body.dev-hover .content > *:hover,
+body.dev-hover .grid > *:hover {
+  position: relative;
+  padding-bottom: 1.25rem;
+  background-color: rgba(70, 130, 180, 0.1);
+  outline: 1px solid steelblue;
+  background-clip: content-box;
+}
+
+body.dev-hover .content > *:hover:before,
+body.dev-hover .grid > *:hover:before {
+  background: rgba(70, 130, 180, 0.8);
+  color: #fff;
+  bottom: 0;
+}
+
+.container,
+.container.full,
+.xxl-container,
+.xl-container,
+.lg-container,
+.m-container,
+.s-container {
+  width: 100%;
+  padding-right: var(--spaces-x, 0.75rem);
+  padding-left: var(--spaces-x, 0.75rem);
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 576px) {
+  .s-container,
+  .container {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 768px) {
+  .m-container,
+  .s-container,
+  .container {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 992px) {
+  .lg-container,
+  .m-container,
+  .s-container,
+  .container {
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .xl-container,
+  .lg-container,
+  .m-container,
+  .s-container,
+  .container {
+    max-width: 1140px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .xxl-container,
+  .xl-container,
+  .lg-container,
+  .m-container,
+  .s-container,
+  .container {
+    max-width: 1320px;
+  }
+}
+
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: calc(var(--spaces-y) * -1);
+  margin-right: calc(var(--spaces-x) / -2);
+  margin-left: calc(var(--spaces-x) / -2);
+}
+
+.content > * {
+  width: 100%;
+  max-width: 100%;
+  padding-right: calc(var(--spaces-x) / 2);
+  padding-left: calc(var(--spaces-x) / 2);
+  margin-top: var(--spaces-y);
+}
+
+@media (min-width: 1200px) {
+  .content {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: var(--max-width);
+  }
+}
+
+.content.full {
+  max-width: 100%;
+}
+
+/* Grid */
+.grid {
+  display: grid;
+  grid-template-columns: 100%;
+  column-gap: var(--gap);
+  margin-top: calc(var(--spaces-y) * -1);
+  margin-right: calc(var(--spaces-x) / -2);
+  margin-left: calc(var(--spaces-x) / -2);
+}
+
+.grid > * {
+  width: 100%;
+  max-width: 100%;
+  padding-right: calc(var(--spaces-x) / 2);
+  padding-left: calc(var(--spaces-x) / 2);
+  margin-top: var(--spaces-y);
+}
+
+@media (min-width: 1200px) {
+  .grid {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: var(--max-width);
+  }
+}
+
+.grid.gap-0 {
+  --gap: 0rem;
+}
+
+@media (min-width: 576px) {
+  .grid.s-gap-0 {
+    --gap: 0rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .grid.m-gap-0 {
+    --gap: 0rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .grid.lg-gap-0 {
+    --gap: 0rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .grid.xl-gap-0 {
+    --gap: 0rem;
+  }
+}
+
+@media (min-width: 1400px) {
+  .grid.xxl-gap-0 {
+    --gap: 0rem;
+  }
+}
+
+.grid.gap-1 {
+  --gap: 0.5rem;
+}
+
+@media (min-width: 576px) {
+  .grid.s-gap-1 {
+    --gap: 0.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .grid.m-gap-1 {
+    --gap: 0.5rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .grid.lg-gap-1 {
+    --gap: 0.5rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .grid.xl-gap-1 {
+    --gap: 0.5rem;
+  }
+}
+
+@media (min-width: 1400px) {
+  .grid.xxl-gap-1 {
+    --gap: 0.5rem;
+  }
+}
+
+.grid.gap-2 {
+  --gap: 1rem;
+}
+
+@media (min-width: 576px) {
+  .grid.s-gap-2 {
+    --gap: 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .grid.m-gap-2 {
+    --gap: 1rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .grid.lg-gap-2 {
+    --gap: 1rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .grid.xl-gap-2 {
+    --gap: 1rem;
+  }
+}
+
+@media (min-width: 1400px) {
+  .grid.xxl-gap-2 {
+    --gap: 1rem;
+  }
+}
+
+.grid.gap-3 {
+  --gap: 1.5rem;
+}
+
+@media (min-width: 576px) {
+  .grid.s-gap-3 {
+    --gap: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .grid.m-gap-3 {
+    --gap: 1.5rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .grid.lg-gap-3 {
+    --gap: 1.5rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .grid.xl-gap-3 {
+    --gap: 1.5rem;
+  }
+}
+
+@media (min-width: 1400px) {
+  .grid.xxl-gap-3 {
+    --gap: 1.5rem;
+  }
+}
+
+.grid.gap-4 {
+  --gap: 2rem;
+}
+
+@media (min-width: 576px) {
+  .grid.s-gap-4 {
+    --gap: 2rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .grid.m-gap-4 {
+    --gap: 2rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .grid.lg-gap-4 {
+    --gap: 2rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .grid.xl-gap-4 {
+    --gap: 2rem;
+  }
+}
+
+@media (min-width: 1400px) {
+  .grid.xxl-gap-4 {
+    --gap: 2rem;
+  }
+}
+
+.grid.row-gap,
+.grid.rows-gap {
+  row-gap: var(--gap);
+}
+
+.grid .grid,
+.grid.full {
+  width: 100%;
+  max-width: 100%;
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.grid.cols-1,
+.grid.grid-1 {
+  grid-template-columns: 100%;
+}
+
+.grid > .span-1,
+.grid > .cols-1 {
+  grid-column-end: span 1;
+}
+
+.grid > .rows-1 {
+  grid-row-end: span 1;
+}
+
+.grid > .x-1 {
+  grid-column-start: 1;
+}
+
+.grid > .y-1 {
+  grid-row-start: 1;
+}
+
+.grid.cols-2,
+.grid.grid-2 {
+  grid-template-columns: repeat(2, calc((100% - var(--gap) * 1) / 2));
+}
+
+.grid > .span-2,
+.grid > .cols-2 {
+  grid-column-end: span 2;
+}
+
+.grid > .rows-2 {
+  grid-row-end: span 2;
+}
+
+.grid > .x-2 {
+  grid-column-start: 2;
+}
+
+.grid > .y-2 {
+  grid-row-start: 2;
+}
+
+.grid.cols-3,
+.grid.grid-3 {
+  grid-template-columns: repeat(3, calc((100% - var(--gap) * 2) / 3));
+}
+
+.grid > .span-3,
+.grid > .cols-3 {
+  grid-column-end: span 3;
+}
+
+.grid > .rows-3 {
+  grid-row-end: span 3;
+}
+
+.grid > .x-3 {
+  grid-column-start: 3;
+}
+
+.grid > .y-3 {
+  grid-row-start: 3;
+}
+
+.grid.cols-4,
+.grid.grid-4 {
+  grid-template-columns: repeat(4, calc((100% - var(--gap) * 3) / 4));
+}
+
+.grid > .span-4,
+.grid > .cols-4 {
+  grid-column-end: span 4;
+}
+
+.grid > .rows-4 {
+  grid-row-end: span 4;
+}
+
+.grid > .x-4 {
+  grid-column-start: 4;
+}
+
+.grid > .y-4 {
+  grid-row-start: 4;
+}
+
+.grid.cols-5,
+.grid.grid-5 {
+  grid-template-columns: repeat(5, calc((100% - var(--gap) * 4) / 5));
+}
+
+.grid > .span-5,
+.grid > .cols-5 {
+  grid-column-end: span 5;
+}
+
+.grid > .rows-5 {
+  grid-row-end: span 5;
+}
+
+.grid > .x-5 {
+  grid-column-start: 5;
+}
+
+.grid > .y-5 {
+  grid-row-start: 5;
+}
+
+.grid.cols-6,
+.grid.grid-6 {
+  grid-template-columns: repeat(6, calc((100% - var(--gap) * 5) / 6));
+}
+
+.grid > .span-6,
+.grid > .cols-6 {
+  grid-column-end: span 6;
+}
+
+.grid > .rows-6 {
+  grid-row-end: span 6;
+}
+
+.grid > .x-6 {
+  grid-column-start: 6;
+}
+
+.grid > .y-6 {
+  grid-row-start: 6;
+}
+
+.grid.cols-7,
+.grid.grid-7 {
+  grid-template-columns: repeat(7, calc((100% - var(--gap) * 6) / 7));
+}
+
+.grid > .span-7,
+.grid > .cols-7 {
+  grid-column-end: span 7;
+}
+
+.grid > .rows-7 {
+  grid-row-end: span 7;
+}
+
+.grid > .x-7 {
+  grid-column-start: 7;
+}
+
+.grid > .y-7 {
+  grid-row-start: 7;
+}
+
+.grid.cols-8,
+.grid.grid-8 {
+  grid-template-columns: repeat(8, calc((100% - var(--gap) * 7) / 8));
+}
+
+.grid > .span-8,
+.grid > .cols-8 {
+  grid-column-end: span 8;
+}
+
+.grid > .rows-8 {
+  grid-row-end: span 8;
+}
+
+.grid > .x-8 {
+  grid-column-start: 8;
+}
+
+.grid > .y-8 {
+  grid-row-start: 8;
+}
+
+.grid.cols-9,
+.grid.grid-9 {
+  grid-template-columns: repeat(9, calc((100% - var(--gap) * 8) / 9));
+}
+
+.grid > .span-9,
+.grid > .cols-9 {
+  grid-column-end: span 9;
+}
+
+.grid > .rows-9 {
+  grid-row-end: span 9;
+}
+
+.grid > .x-9 {
+  grid-column-start: 9;
+}
+
+.grid > .y-9 {
+  grid-row-start: 9;
+}
+
+.grid.cols-10,
+.grid.grid-10 {
+  grid-template-columns: repeat(10, calc((100% - var(--gap) * 9) / 10));
+}
+
+.grid > .span-10,
+.grid > .cols-10 {
+  grid-column-end: span 10;
+}
+
+.grid > .rows-10 {
+  grid-row-end: span 10;
+}
+
+.grid > .x-10 {
+  grid-column-start: 10;
+}
+
+.grid > .y-10 {
+  grid-row-start: 10;
+}
+
+.grid.cols-11,
+.grid.grid-11 {
+  grid-template-columns: repeat(11, calc((100% - var(--gap) * 10) / 11));
+}
+
+.grid > .span-11,
+.grid > .cols-11 {
+  grid-column-end: span 11;
+}
+
+.grid > .rows-11 {
+  grid-row-end: span 11;
+}
+
+.grid > .x-11 {
+  grid-column-start: 11;
+}
+
+.grid > .y-11 {
+  grid-row-start: 11;
+}
+
+.grid.cols-12,
+.grid.grid-12 {
+  grid-template-columns: repeat(12, calc((100% - var(--gap) * 11) / 12));
+}
+
+.grid > .span-12,
+.grid > .cols-12 {
+  grid-column-end: span 12;
+}
+
+.grid > .rows-12 {
+  grid-row-end: span 12;
+}
+
+.grid > .x-12 {
+  grid-column-start: 12;
+}
+
+.grid > .y-12 {
+  grid-row-start: 12;
+}
+
+@media (min-width: 576px) {
+  .grid.cols-s-1,
+  .grid.s-grid-1 {
+    grid-template-columns: 100%;
+  }
+  .grid > .span-s-1,
+  .grid > .s-cols-1 {
+    grid-column-end: span 1;
+  }
+  .grid > .s-rows-1 {
+    grid-row-end: span 1;
+  }
+  .grid > .s-x-1 {
+    grid-column-start: 1;
+  }
+  .grid > .s-y-1 {
+    grid-row-start: 1;
+  }
+  .grid.cols-s-2,
+  .grid.s-grid-2 {
+    grid-template-columns: repeat(2, calc((100% - var(--gap) * 1) / 2));
+  }
+  .grid > .span-s-2,
+  .grid > .s-cols-2 {
+    grid-column-end: span 2;
+  }
+  .grid > .s-rows-2 {
+    grid-row-end: span 2;
+  }
+  .grid > .s-x-2 {
+    grid-column-start: 2;
+  }
+  .grid > .s-y-2 {
+    grid-row-start: 2;
+  }
+  .grid.cols-s-3,
+  .grid.s-grid-3 {
+    grid-template-columns: repeat(3, calc((100% - var(--gap) * 2) / 3));
+  }
+  .grid > .span-s-3,
+  .grid > .s-cols-3 {
+    grid-column-end: span 3;
+  }
+  .grid > .s-rows-3 {
+    grid-row-end: span 3;
+  }
+  .grid > .s-x-3 {
+    grid-column-start: 3;
+  }
+  .grid > .s-y-3 {
+    grid-row-start: 3;
+  }
+  .grid.cols-s-4,
+  .grid.s-grid-4 {
+    grid-template-columns: repeat(4, calc((100% - var(--gap) * 3) / 4));
+  }
+  .grid > .span-s-4,
+  .grid > .s-cols-4 {
+    grid-column-end: span 4;
+  }
+  .grid > .s-rows-4 {
+    grid-row-end: span 4;
+  }
+  .grid > .s-x-4 {
+    grid-column-start: 4;
+  }
+  .grid > .s-y-4 {
+    grid-row-start: 4;
+  }
+  .grid.cols-s-5,
+  .grid.s-grid-5 {
+    grid-template-columns: repeat(5, calc((100% - var(--gap) * 4) / 5));
+  }
+  .grid > .span-s-5,
+  .grid > .s-cols-5 {
+    grid-column-end: span 5;
+  }
+  .grid > .s-rows-5 {
+    grid-row-end: span 5;
+  }
+  .grid > .s-x-5 {
+    grid-column-start: 5;
+  }
+  .grid > .s-y-5 {
+    grid-row-start: 5;
+  }
+  .grid.cols-s-6,
+  .grid.s-grid-6 {
+    grid-template-columns: repeat(6, calc((100% - var(--gap) * 5) / 6));
+  }
+  .grid > .span-s-6,
+  .grid > .s-cols-6 {
+    grid-column-end: span 6;
+  }
+  .grid > .s-rows-6 {
+    grid-row-end: span 6;
+  }
+  .grid > .s-x-6 {
+    grid-column-start: 6;
+  }
+  .grid > .s-y-6 {
+    grid-row-start: 6;
+  }
+  .grid.cols-s-7,
+  .grid.s-grid-7 {
+    grid-template-columns: repeat(7, calc((100% - var(--gap) * 6) / 7));
+  }
+  .grid > .span-s-7,
+  .grid > .s-cols-7 {
+    grid-column-end: span 7;
+  }
+  .grid > .s-rows-7 {
+    grid-row-end: span 7;
+  }
+  .grid > .s-x-7 {
+    grid-column-start: 7;
+  }
+  .grid > .s-y-7 {
+    grid-row-start: 7;
+  }
+  .grid.cols-s-8,
+  .grid.s-grid-8 {
+    grid-template-columns: repeat(8, calc((100% - var(--gap) * 7) / 8));
+  }
+  .grid > .span-s-8,
+  .grid > .s-cols-8 {
+    grid-column-end: span 8;
+  }
+  .grid > .s-rows-8 {
+    grid-row-end: span 8;
+  }
+  .grid > .s-x-8 {
+    grid-column-start: 8;
+  }
+  .grid > .s-y-8 {
+    grid-row-start: 8;
+  }
+  .grid.cols-s-9,
+  .grid.s-grid-9 {
+    grid-template-columns: repeat(9, calc((100% - var(--gap) * 8) / 9));
+  }
+  .grid > .span-s-9,
+  .grid > .s-cols-9 {
+    grid-column-end: span 9;
+  }
+  .grid > .s-rows-9 {
+    grid-row-end: span 9;
+  }
+  .grid > .s-x-9 {
+    grid-column-start: 9;
+  }
+  .grid > .s-y-9 {
+    grid-row-start: 9;
+  }
+  .grid.cols-s-10,
+  .grid.s-grid-10 {
+    grid-template-columns: repeat(10, calc((100% - var(--gap) * 9) / 10));
+  }
+  .grid > .span-s-10,
+  .grid > .s-cols-10 {
+    grid-column-end: span 10;
+  }
+  .grid > .s-rows-10 {
+    grid-row-end: span 10;
+  }
+  .grid > .s-x-10 {
+    grid-column-start: 10;
+  }
+  .grid > .s-y-10 {
+    grid-row-start: 10;
+  }
+  .grid.cols-s-11,
+  .grid.s-grid-11 {
+    grid-template-columns: repeat(11, calc((100% - var(--gap) * 10) / 11));
+  }
+  .grid > .span-s-11,
+  .grid > .s-cols-11 {
+    grid-column-end: span 11;
+  }
+  .grid > .s-rows-11 {
+    grid-row-end: span 11;
+  }
+  .grid > .s-x-11 {
+    grid-column-start: 11;
+  }
+  .grid > .s-y-11 {
+    grid-row-start: 11;
+  }
+  .grid.cols-s-12,
+  .grid.s-grid-12 {
+    grid-template-columns: repeat(12, calc((100% - var(--gap) * 11) / 12));
+  }
+  .grid > .span-s-12,
+  .grid > .s-cols-12 {
+    grid-column-end: span 12;
+  }
+  .grid > .s-rows-12 {
+    grid-row-end: span 12;
+  }
+  .grid > .s-x-12 {
+    grid-column-start: 12;
+  }
+  .grid > .s-y-12 {
+    grid-row-start: 12;
+  }
+}
+
+@media (min-width: 768px) {
+  .grid.cols-m-1,
+  .grid.m-grid-1 {
+    grid-template-columns: 100%;
+  }
+  .grid > .span-m-1,
+  .grid > .m-cols-1 {
+    grid-column-end: span 1;
+  }
+  .grid > .m-rows-1 {
+    grid-row-end: span 1;
+  }
+  .grid > .m-x-1 {
+    grid-column-start: 1;
+  }
+  .grid > .m-y-1 {
+    grid-row-start: 1;
+  }
+  .grid.cols-m-2,
+  .grid.m-grid-2 {
+    grid-template-columns: repeat(2, calc((100% - var(--gap) * 1) / 2));
+  }
+  .grid > .span-m-2,
+  .grid > .m-cols-2 {
+    grid-column-end: span 2;
+  }
+  .grid > .m-rows-2 {
+    grid-row-end: span 2;
+  }
+  .grid > .m-x-2 {
+    grid-column-start: 2;
+  }
+  .grid > .m-y-2 {
+    grid-row-start: 2;
+  }
+  .grid.cols-m-3,
+  .grid.m-grid-3 {
+    grid-template-columns: repeat(3, calc((100% - var(--gap) * 2) / 3));
+  }
+  .grid > .span-m-3,
+  .grid > .m-cols-3 {
+    grid-column-end: span 3;
+  }
+  .grid > .m-rows-3 {
+    grid-row-end: span 3;
+  }
+  .grid > .m-x-3 {
+    grid-column-start: 3;
+  }
+  .grid > .m-y-3 {
+    grid-row-start: 3;
+  }
+  .grid.cols-m-4,
+  .grid.m-grid-4 {
+    grid-template-columns: repeat(4, calc((100% - var(--gap) * 3) / 4));
+  }
+  .grid > .span-m-4,
+  .grid > .m-cols-4 {
+    grid-column-end: span 4;
+  }
+  .grid > .m-rows-4 {
+    grid-row-end: span 4;
+  }
+  .grid > .m-x-4 {
+    grid-column-start: 4;
+  }
+  .grid > .m-y-4 {
+    grid-row-start: 4;
+  }
+  .grid.cols-m-5,
+  .grid.m-grid-5 {
+    grid-template-columns: repeat(5, calc((100% - var(--gap) * 4) / 5));
+  }
+  .grid > .span-m-5,
+  .grid > .m-cols-5 {
+    grid-column-end: span 5;
+  }
+  .grid > .m-rows-5 {
+    grid-row-end: span 5;
+  }
+  .grid > .m-x-5 {
+    grid-column-start: 5;
+  }
+  .grid > .m-y-5 {
+    grid-row-start: 5;
+  }
+  .grid.cols-m-6,
+  .grid.m-grid-6 {
+    grid-template-columns: repeat(6, calc((100% - var(--gap) * 5) / 6));
+  }
+  .grid > .span-m-6,
+  .grid > .m-cols-6 {
+    grid-column-end: span 6;
+  }
+  .grid > .m-rows-6 {
+    grid-row-end: span 6;
+  }
+  .grid > .m-x-6 {
+    grid-column-start: 6;
+  }
+  .grid > .m-y-6 {
+    grid-row-start: 6;
+  }
+  .grid.cols-m-7,
+  .grid.m-grid-7 {
+    grid-template-columns: repeat(7, calc((100% - var(--gap) * 6) / 7));
+  }
+  .grid > .span-m-7,
+  .grid > .m-cols-7 {
+    grid-column-end: span 7;
+  }
+  .grid > .m-rows-7 {
+    grid-row-end: span 7;
+  }
+  .grid > .m-x-7 {
+    grid-column-start: 7;
+  }
+  .grid > .m-y-7 {
+    grid-row-start: 7;
+  }
+  .grid.cols-m-8,
+  .grid.m-grid-8 {
+    grid-template-columns: repeat(8, calc((100% - var(--gap) * 7) / 8));
+  }
+  .grid > .span-m-8,
+  .grid > .m-cols-8 {
+    grid-column-end: span 8;
+  }
+  .grid > .m-rows-8 {
+    grid-row-end: span 8;
+  }
+  .grid > .m-x-8 {
+    grid-column-start: 8;
+  }
+  .grid > .m-y-8 {
+    grid-row-start: 8;
+  }
+  .grid.cols-m-9,
+  .grid.m-grid-9 {
+    grid-template-columns: repeat(9, calc((100% - var(--gap) * 8) / 9));
+  }
+  .grid > .span-m-9,
+  .grid > .m-cols-9 {
+    grid-column-end: span 9;
+  }
+  .grid > .m-rows-9 {
+    grid-row-end: span 9;
+  }
+  .grid > .m-x-9 {
+    grid-column-start: 9;
+  }
+  .grid > .m-y-9 {
+    grid-row-start: 9;
+  }
+  .grid.cols-m-10,
+  .grid.m-grid-10 {
+    grid-template-columns: repeat(10, calc((100% - var(--gap) * 9) / 10));
+  }
+  .grid > .span-m-10,
+  .grid > .m-cols-10 {
+    grid-column-end: span 10;
+  }
+  .grid > .m-rows-10 {
+    grid-row-end: span 10;
+  }
+  .grid > .m-x-10 {
+    grid-column-start: 10;
+  }
+  .grid > .m-y-10 {
+    grid-row-start: 10;
+  }
+  .grid.cols-m-11,
+  .grid.m-grid-11 {
+    grid-template-columns: repeat(11, calc((100% - var(--gap) * 10) / 11));
+  }
+  .grid > .span-m-11,
+  .grid > .m-cols-11 {
+    grid-column-end: span 11;
+  }
+  .grid > .m-rows-11 {
+    grid-row-end: span 11;
+  }
+  .grid > .m-x-11 {
+    grid-column-start: 11;
+  }
+  .grid > .m-y-11 {
+    grid-row-start: 11;
+  }
+  .grid.cols-m-12,
+  .grid.m-grid-12 {
+    grid-template-columns: repeat(12, calc((100% - var(--gap) * 11) / 12));
+  }
+  .grid > .span-m-12,
+  .grid > .m-cols-12 {
+    grid-column-end: span 12;
+  }
+  .grid > .m-rows-12 {
+    grid-row-end: span 12;
+  }
+  .grid > .m-x-12 {
+    grid-column-start: 12;
+  }
+  .grid > .m-y-12 {
+    grid-row-start: 12;
+  }
+}
+
+@media (min-width: 992px) {
+  .grid.cols-lg-1,
+  .grid.lg-grid-1 {
+    grid-template-columns: 100%;
+  }
+  .grid > .span-lg-1,
+  .grid > .lg-cols-1 {
+    grid-column-end: span 1;
+  }
+  .grid > .lg-rows-1 {
+    grid-row-end: span 1;
+  }
+  .grid > .lg-x-1 {
+    grid-column-start: 1;
+  }
+  .grid > .lg-y-1 {
+    grid-row-start: 1;
+  }
+  .grid.cols-lg-2,
+  .grid.lg-grid-2 {
+    grid-template-columns: repeat(2, calc((100% - var(--gap) * 1) / 2));
+  }
+  .grid > .span-lg-2,
+  .grid > .lg-cols-2 {
+    grid-column-end: span 2;
+  }
+  .grid > .lg-rows-2 {
+    grid-row-end: span 2;
+  }
+  .grid > .lg-x-2 {
+    grid-column-start: 2;
+  }
+  .grid > .lg-y-2 {
+    grid-row-start: 2;
+  }
+  .grid.cols-lg-3,
+  .grid.lg-grid-3 {
+    grid-template-columns: repeat(3, calc((100% - var(--gap) * 2) / 3));
+  }
+  .grid > .span-lg-3,
+  .grid > .lg-cols-3 {
+    grid-column-end: span 3;
+  }
+  .grid > .lg-rows-3 {
+    grid-row-end: span 3;
+  }
+  .grid > .lg-x-3 {
+    grid-column-start: 3;
+  }
+  .grid > .lg-y-3 {
+    grid-row-start: 3;
+  }
+  .grid.cols-lg-4,
+  .grid.lg-grid-4 {
+    grid-template-columns: repeat(4, calc((100% - var(--gap) * 3) / 4));
+  }
+  .grid > .span-lg-4,
+  .grid > .lg-cols-4 {
+    grid-column-end: span 4;
+  }
+  .grid > .lg-rows-4 {
+    grid-row-end: span 4;
+  }
+  .grid > .lg-x-4 {
+    grid-column-start: 4;
+  }
+  .grid > .lg-y-4 {
+    grid-row-start: 4;
+  }
+  .grid.cols-lg-5,
+  .grid.lg-grid-5 {
+    grid-template-columns: repeat(5, calc((100% - var(--gap) * 4) / 5));
+  }
+  .grid > .span-lg-5,
+  .grid > .lg-cols-5 {
+    grid-column-end: span 5;
+  }
+  .grid > .lg-rows-5 {
+    grid-row-end: span 5;
+  }
+  .grid > .lg-x-5 {
+    grid-column-start: 5;
+  }
+  .grid > .lg-y-5 {
+    grid-row-start: 5;
+  }
+  .grid.cols-lg-6,
+  .grid.lg-grid-6 {
+    grid-template-columns: repeat(6, calc((100% - var(--gap) * 5) / 6));
+  }
+  .grid > .span-lg-6,
+  .grid > .lg-cols-6 {
+    grid-column-end: span 6;
+  }
+  .grid > .lg-rows-6 {
+    grid-row-end: span 6;
+  }
+  .grid > .lg-x-6 {
+    grid-column-start: 6;
+  }
+  .grid > .lg-y-6 {
+    grid-row-start: 6;
+  }
+  .grid.cols-lg-7,
+  .grid.lg-grid-7 {
+    grid-template-columns: repeat(7, calc((100% - var(--gap) * 6) / 7));
+  }
+  .grid > .span-lg-7,
+  .grid > .lg-cols-7 {
+    grid-column-end: span 7;
+  }
+  .grid > .lg-rows-7 {
+    grid-row-end: span 7;
+  }
+  .grid > .lg-x-7 {
+    grid-column-start: 7;
+  }
+  .grid > .lg-y-7 {
+    grid-row-start: 7;
+  }
+  .grid.cols-lg-8,
+  .grid.lg-grid-8 {
+    grid-template-columns: repeat(8, calc((100% - var(--gap) * 7) / 8));
+  }
+  .grid > .span-lg-8,
+  .grid > .lg-cols-8 {
+    grid-column-end: span 8;
+  }
+  .grid > .lg-rows-8 {
+    grid-row-end: span 8;
+  }
+  .grid > .lg-x-8 {
+    grid-column-start: 8;
+  }
+  .grid > .lg-y-8 {
+    grid-row-start: 8;
+  }
+  .grid.cols-lg-9,
+  .grid.lg-grid-9 {
+    grid-template-columns: repeat(9, calc((100% - var(--gap) * 8) / 9));
+  }
+  .grid > .span-lg-9,
+  .grid > .lg-cols-9 {
+    grid-column-end: span 9;
+  }
+  .grid > .lg-rows-9 {
+    grid-row-end: span 9;
+  }
+  .grid > .lg-x-9 {
+    grid-column-start: 9;
+  }
+  .grid > .lg-y-9 {
+    grid-row-start: 9;
+  }
+  .grid.cols-lg-10,
+  .grid.lg-grid-10 {
+    grid-template-columns: repeat(10, calc((100% - var(--gap) * 9) / 10));
+  }
+  .grid > .span-lg-10,
+  .grid > .lg-cols-10 {
+    grid-column-end: span 10;
+  }
+  .grid > .lg-rows-10 {
+    grid-row-end: span 10;
+  }
+  .grid > .lg-x-10 {
+    grid-column-start: 10;
+  }
+  .grid > .lg-y-10 {
+    grid-row-start: 10;
+  }
+  .grid.cols-lg-11,
+  .grid.lg-grid-11 {
+    grid-template-columns: repeat(11, calc((100% - var(--gap) * 10) / 11));
+  }
+  .grid > .span-lg-11,
+  .grid > .lg-cols-11 {
+    grid-column-end: span 11;
+  }
+  .grid > .lg-rows-11 {
+    grid-row-end: span 11;
+  }
+  .grid > .lg-x-11 {
+    grid-column-start: 11;
+  }
+  .grid > .lg-y-11 {
+    grid-row-start: 11;
+  }
+  .grid.cols-lg-12,
+  .grid.lg-grid-12 {
+    grid-template-columns: repeat(12, calc((100% - var(--gap) * 11) / 12));
+  }
+  .grid > .span-lg-12,
+  .grid > .lg-cols-12 {
+    grid-column-end: span 12;
+  }
+  .grid > .lg-rows-12 {
+    grid-row-end: span 12;
+  }
+  .grid > .lg-x-12 {
+    grid-column-start: 12;
+  }
+  .grid > .lg-y-12 {
+    grid-row-start: 12;
+  }
+}
+
+@media (min-width: 1200px) {
+  .grid.cols-xl-1,
+  .grid.xl-grid-1 {
+    grid-template-columns: 100%;
+  }
+  .grid > .span-xl-1,
+  .grid > .xl-cols-1 {
+    grid-column-end: span 1;
+  }
+  .grid > .xl-rows-1 {
+    grid-row-end: span 1;
+  }
+  .grid > .xl-x-1 {
+    grid-column-start: 1;
+  }
+  .grid > .xl-y-1 {
+    grid-row-start: 1;
+  }
+  .grid.cols-xl-2,
+  .grid.xl-grid-2 {
+    grid-template-columns: repeat(2, calc((100% - var(--gap) * 1) / 2));
+  }
+  .grid > .span-xl-2,
+  .grid > .xl-cols-2 {
+    grid-column-end: span 2;
+  }
+  .grid > .xl-rows-2 {
+    grid-row-end: span 2;
+  }
+  .grid > .xl-x-2 {
+    grid-column-start: 2;
+  }
+  .grid > .xl-y-2 {
+    grid-row-start: 2;
+  }
+  .grid.cols-xl-3,
+  .grid.xl-grid-3 {
+    grid-template-columns: repeat(3, calc((100% - var(--gap) * 2) / 3));
+  }
+  .grid > .span-xl-3,
+  .grid > .xl-cols-3 {
+    grid-column-end: span 3;
+  }
+  .grid > .xl-rows-3 {
+    grid-row-end: span 3;
+  }
+  .grid > .xl-x-3 {
+    grid-column-start: 3;
+  }
+  .grid > .xl-y-3 {
+    grid-row-start: 3;
+  }
+  .grid.cols-xl-4,
+  .grid.xl-grid-4 {
+    grid-template-columns: repeat(4, calc((100% - var(--gap) * 3) / 4));
+  }
+  .grid > .span-xl-4,
+  .grid > .xl-cols-4 {
+    grid-column-end: span 4;
+  }
+  .grid > .xl-rows-4 {
+    grid-row-end: span 4;
+  }
+  .grid > .xl-x-4 {
+    grid-column-start: 4;
+  }
+  .grid > .xl-y-4 {
+    grid-row-start: 4;
+  }
+  .grid.cols-xl-5,
+  .grid.xl-grid-5 {
+    grid-template-columns: repeat(5, calc((100% - var(--gap) * 4) / 5));
+  }
+  .grid > .span-xl-5,
+  .grid > .xl-cols-5 {
+    grid-column-end: span 5;
+  }
+  .grid > .xl-rows-5 {
+    grid-row-end: span 5;
+  }
+  .grid > .xl-x-5 {
+    grid-column-start: 5;
+  }
+  .grid > .xl-y-5 {
+    grid-row-start: 5;
+  }
+  .grid.cols-xl-6,
+  .grid.xl-grid-6 {
+    grid-template-columns: repeat(6, calc((100% - var(--gap) * 5) / 6));
+  }
+  .grid > .span-xl-6,
+  .grid > .xl-cols-6 {
+    grid-column-end: span 6;
+  }
+  .grid > .xl-rows-6 {
+    grid-row-end: span 6;
+  }
+  .grid > .xl-x-6 {
+    grid-column-start: 6;
+  }
+  .grid > .xl-y-6 {
+    grid-row-start: 6;
+  }
+  .grid.cols-xl-7,
+  .grid.xl-grid-7 {
+    grid-template-columns: repeat(7, calc((100% - var(--gap) * 6) / 7));
+  }
+  .grid > .span-xl-7,
+  .grid > .xl-cols-7 {
+    grid-column-end: span 7;
+  }
+  .grid > .xl-rows-7 {
+    grid-row-end: span 7;
+  }
+  .grid > .xl-x-7 {
+    grid-column-start: 7;
+  }
+  .grid > .xl-y-7 {
+    grid-row-start: 7;
+  }
+  .grid.cols-xl-8,
+  .grid.xl-grid-8 {
+    grid-template-columns: repeat(8, calc((100% - var(--gap) * 7) / 8));
+  }
+  .grid > .span-xl-8,
+  .grid > .xl-cols-8 {
+    grid-column-end: span 8;
+  }
+  .grid > .xl-rows-8 {
+    grid-row-end: span 8;
+  }
+  .grid > .xl-x-8 {
+    grid-column-start: 8;
+  }
+  .grid > .xl-y-8 {
+    grid-row-start: 8;
+  }
+  .grid.cols-xl-9,
+  .grid.xl-grid-9 {
+    grid-template-columns: repeat(9, calc((100% - var(--gap) * 8) / 9));
+  }
+  .grid > .span-xl-9,
+  .grid > .xl-cols-9 {
+    grid-column-end: span 9;
+  }
+  .grid > .xl-rows-9 {
+    grid-row-end: span 9;
+  }
+  .grid > .xl-x-9 {
+    grid-column-start: 9;
+  }
+  .grid > .xl-y-9 {
+    grid-row-start: 9;
+  }
+  .grid.cols-xl-10,
+  .grid.xl-grid-10 {
+    grid-template-columns: repeat(10, calc((100% - var(--gap) * 9) / 10));
+  }
+  .grid > .span-xl-10,
+  .grid > .xl-cols-10 {
+    grid-column-end: span 10;
+  }
+  .grid > .xl-rows-10 {
+    grid-row-end: span 10;
+  }
+  .grid > .xl-x-10 {
+    grid-column-start: 10;
+  }
+  .grid > .xl-y-10 {
+    grid-row-start: 10;
+  }
+  .grid.cols-xl-11,
+  .grid.xl-grid-11 {
+    grid-template-columns: repeat(11, calc((100% - var(--gap) * 10) / 11));
+  }
+  .grid > .span-xl-11,
+  .grid > .xl-cols-11 {
+    grid-column-end: span 11;
+  }
+  .grid > .xl-rows-11 {
+    grid-row-end: span 11;
+  }
+  .grid > .xl-x-11 {
+    grid-column-start: 11;
+  }
+  .grid > .xl-y-11 {
+    grid-row-start: 11;
+  }
+  .grid.cols-xl-12,
+  .grid.xl-grid-12 {
+    grid-template-columns: repeat(12, calc((100% - var(--gap) * 11) / 12));
+  }
+  .grid > .span-xl-12,
+  .grid > .xl-cols-12 {
+    grid-column-end: span 12;
+  }
+  .grid > .xl-rows-12 {
+    grid-row-end: span 12;
+  }
+  .grid > .xl-x-12 {
+    grid-column-start: 12;
+  }
+  .grid > .xl-y-12 {
+    grid-row-start: 12;
+  }
+}
+
+@media (min-width: 1400px) {
+  .grid.cols-xxl-1,
+  .grid.xxl-grid-1 {
+    grid-template-columns: 100%;
+  }
+  .grid > .span-xxl-1,
+  .grid > .xxl-cols-1 {
+    grid-column-end: span 1;
+  }
+  .grid > .xxl-rows-1 {
+    grid-row-end: span 1;
+  }
+  .grid > .xxl-x-1 {
+    grid-column-start: 1;
+  }
+  .grid > .xxl-y-1 {
+    grid-row-start: 1;
+  }
+  .grid.cols-xxl-2,
+  .grid.xxl-grid-2 {
+    grid-template-columns: repeat(2, calc((100% - var(--gap) * 1) / 2));
+  }
+  .grid > .span-xxl-2,
+  .grid > .xxl-cols-2 {
+    grid-column-end: span 2;
+  }
+  .grid > .xxl-rows-2 {
+    grid-row-end: span 2;
+  }
+  .grid > .xxl-x-2 {
+    grid-column-start: 2;
+  }
+  .grid > .xxl-y-2 {
+    grid-row-start: 2;
+  }
+  .grid.cols-xxl-3,
+  .grid.xxl-grid-3 {
+    grid-template-columns: repeat(3, calc((100% - var(--gap) * 2) / 3));
+  }
+  .grid > .span-xxl-3,
+  .grid > .xxl-cols-3 {
+    grid-column-end: span 3;
+  }
+  .grid > .xxl-rows-3 {
+    grid-row-end: span 3;
+  }
+  .grid > .xxl-x-3 {
+    grid-column-start: 3;
+  }
+  .grid > .xxl-y-3 {
+    grid-row-start: 3;
+  }
+  .grid.cols-xxl-4,
+  .grid.xxl-grid-4 {
+    grid-template-columns: repeat(4, calc((100% - var(--gap) * 3) / 4));
+  }
+  .grid > .span-xxl-4,
+  .grid > .xxl-cols-4 {
+    grid-column-end: span 4;
+  }
+  .grid > .xxl-rows-4 {
+    grid-row-end: span 4;
+  }
+  .grid > .xxl-x-4 {
+    grid-column-start: 4;
+  }
+  .grid > .xxl-y-4 {
+    grid-row-start: 4;
+  }
+  .grid.cols-xxl-5,
+  .grid.xxl-grid-5 {
+    grid-template-columns: repeat(5, calc((100% - var(--gap) * 4) / 5));
+  }
+  .grid > .span-xxl-5,
+  .grid > .xxl-cols-5 {
+    grid-column-end: span 5;
+  }
+  .grid > .xxl-rows-5 {
+    grid-row-end: span 5;
+  }
+  .grid > .xxl-x-5 {
+    grid-column-start: 5;
+  }
+  .grid > .xxl-y-5 {
+    grid-row-start: 5;
+  }
+  .grid.cols-xxl-6,
+  .grid.xxl-grid-6 {
+    grid-template-columns: repeat(6, calc((100% - var(--gap) * 5) / 6));
+  }
+  .grid > .span-xxl-6,
+  .grid > .xxl-cols-6 {
+    grid-column-end: span 6;
+  }
+  .grid > .xxl-rows-6 {
+    grid-row-end: span 6;
+  }
+  .grid > .xxl-x-6 {
+    grid-column-start: 6;
+  }
+  .grid > .xxl-y-6 {
+    grid-row-start: 6;
+  }
+  .grid.cols-xxl-7,
+  .grid.xxl-grid-7 {
+    grid-template-columns: repeat(7, calc((100% - var(--gap) * 6) / 7));
+  }
+  .grid > .span-xxl-7,
+  .grid > .xxl-cols-7 {
+    grid-column-end: span 7;
+  }
+  .grid > .xxl-rows-7 {
+    grid-row-end: span 7;
+  }
+  .grid > .xxl-x-7 {
+    grid-column-start: 7;
+  }
+  .grid > .xxl-y-7 {
+    grid-row-start: 7;
+  }
+  .grid.cols-xxl-8,
+  .grid.xxl-grid-8 {
+    grid-template-columns: repeat(8, calc((100% - var(--gap) * 7) / 8));
+  }
+  .grid > .span-xxl-8,
+  .grid > .xxl-cols-8 {
+    grid-column-end: span 8;
+  }
+  .grid > .xxl-rows-8 {
+    grid-row-end: span 8;
+  }
+  .grid > .xxl-x-8 {
+    grid-column-start: 8;
+  }
+  .grid > .xxl-y-8 {
+    grid-row-start: 8;
+  }
+  .grid.cols-xxl-9,
+  .grid.xxl-grid-9 {
+    grid-template-columns: repeat(9, calc((100% - var(--gap) * 8) / 9));
+  }
+  .grid > .span-xxl-9,
+  .grid > .xxl-cols-9 {
+    grid-column-end: span 9;
+  }
+  .grid > .xxl-rows-9 {
+    grid-row-end: span 9;
+  }
+  .grid > .xxl-x-9 {
+    grid-column-start: 9;
+  }
+  .grid > .xxl-y-9 {
+    grid-row-start: 9;
+  }
+  .grid.cols-xxl-10,
+  .grid.xxl-grid-10 {
+    grid-template-columns: repeat(10, calc((100% - var(--gap) * 9) / 10));
+  }
+  .grid > .span-xxl-10,
+  .grid > .xxl-cols-10 {
+    grid-column-end: span 10;
+  }
+  .grid > .xxl-rows-10 {
+    grid-row-end: span 10;
+  }
+  .grid > .xxl-x-10 {
+    grid-column-start: 10;
+  }
+  .grid > .xxl-y-10 {
+    grid-row-start: 10;
+  }
+  .grid.cols-xxl-11,
+  .grid.xxl-grid-11 {
+    grid-template-columns: repeat(11, calc((100% - var(--gap) * 10) / 11));
+  }
+  .grid > .span-xxl-11,
+  .grid > .xxl-cols-11 {
+    grid-column-end: span 11;
+  }
+  .grid > .xxl-rows-11 {
+    grid-row-end: span 11;
+  }
+  .grid > .xxl-x-11 {
+    grid-column-start: 11;
+  }
+  .grid > .xxl-y-11 {
+    grid-row-start: 11;
+  }
+  .grid.cols-xxl-12,
+  .grid.xxl-grid-12 {
+    grid-template-columns: repeat(12, calc((100% - var(--gap) * 11) / 12));
+  }
+  .grid > .span-xxl-12,
+  .grid > .xxl-cols-12 {
+    grid-column-end: span 12;
+  }
+  .grid > .xxl-rows-12 {
+    grid-row-end: span 12;
+  }
+  .grid > .xxl-x-12 {
+    grid-column-start: 12;
+  }
+  .grid > .xxl-y-12 {
+    grid-row-start: 12;
+  }
+}
+
+.grid[class*='-main-'],
+.grid[class*='-cross-'] {
+  display: grid;
+}
